@@ -39,6 +39,12 @@ namespace strategy {
 } //namespace strategy
 
 
+class LocalizationModule { //to delete
+public:
+    std::vector<strategy::Point> GetCurrentPositions() {
+        //pass
+    }
+};
 
 
 class KernelStrategy {
@@ -46,10 +52,12 @@ public:
     strategy::Command WhatToDo();
 
 private:
-    strategy::Robot GetLeader(const std::vector<strategy::Robot>& robots_);
+    strategy::Robot GetLeader();
+    void UpdatePositions();
 
 private:
-    //some
+    std::vector<strategy::Robot>& robots_;
+    LocalizationModule localization{};
 };
 
 

@@ -5,7 +5,7 @@
 #include "KernelStrategy.hpp"
 
 
-strategy::Robot KernelStrategy::GetLeader(const std::vector<strategy::Robot> &robots_) {
+strategy::Robot KernelStrategy::GetLeader() {
     strategy::Robot best{};
     for (auto& current : robots_) {
         if (current.position_.y > best.position_.y ) {
@@ -17,4 +17,12 @@ strategy::Robot KernelStrategy::GetLeader(const std::vector<strategy::Robot> &ro
 
 strategy::Command KernelStrategy::WhatToDo() {
     return {};
+}
+
+void KernelStrategy::UpdatePositions() {
+    auto tmp_positions = localization.GetCurrentPositions();
+    for (auto& current : robots_) {
+        auto iter = current.number_;
+        current.position_ = tmp_positions[iter];
+    }
 }
