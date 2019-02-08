@@ -3,4 +3,4 @@ project(CStrategy)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(CStrategy main.cpp KernelStrategy.cpp KernelStrategy.h)
+add_executable(CStrategy main.cpp KernelStrategy.cpp KernelStrategy.hpp)
