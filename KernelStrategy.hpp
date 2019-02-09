@@ -7,6 +7,8 @@
 
 #include <string>
 #include <vector>
+#include <atomic>
+#include <thread>
 
 namespace strategy {
     struct Command {
@@ -49,6 +51,9 @@ public:
 
 class KernelStrategy {
 public:
+    bool Start();
+    bool Pause();
+    bool Terminate();
     strategy::Command WhatToDo();
 
 private:
@@ -56,8 +61,23 @@ private:
     void UpdatePositions();
 
 private:
+    struct ProAngle {
+
+        ProAngle(double l, double r, double s) :
+            left_(l),
+            right_(r),
+            step_(s) {}
+
+        double left_;
+        double right_;
+        double step_;
+    };
+
     std::vector<strategy::Robot>& robots_;
     LocalizationModule localization{};
+    std::atomic<bool> is_terminated_{false};
+    std::atomic<bool> is_paused_{false};
+    std::vector<std::thread> threads_{};
 };
 
 
