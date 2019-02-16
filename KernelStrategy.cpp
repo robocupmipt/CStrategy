@@ -20,7 +20,7 @@ strategy::Command KernelStrategy::WhatToDo() {
 }
 
 void KernelStrategy::UpdatePositions() {
-    auto tmp_positions = localization.GetCurrentPositions();
+    auto tmp_positions = localizationModule.GetCurrentPositions();
     for (auto& current : robots_) {
         auto iter = current.number_;
         current.position_ = tmp_positions[iter];
@@ -66,4 +66,18 @@ bool KernelStrategy::Terminate() {
     const bool answer = !is_terminated_.load();
     is_terminated_.store(true);
     return answer;
+}
+
+void KernelStrategy::SprintLogic() {
+    int total_amount_of_metres_passed = 0;
+    while (!computerVisionModule.IsNearTheEdge()) {
+        movementGraph.Move(1, 0, 0);
+        total_amount_of_metres_passed++;
+        while (!computerVisionModule.IsNormalTrajectory()) {
+            const double angle = computerVisionModule.GetNewTrajectoryAngle();
+            movementGraph.SetTheta(angle);
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+        }
+    }
+    movementGraph.Move(-total_amount_of_metres_passed, 0, 0);
 }

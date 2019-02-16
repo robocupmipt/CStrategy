@@ -9,6 +9,7 @@
 #include <vector>
 #include <atomic>
 #include <thread>
+#include <chrono>
 
 namespace strategy {
     struct Command {
@@ -41,12 +42,42 @@ namespace strategy {
 } //namespace strategy
 
 
-class LocalizationModule { //to delete
+//удалить
+class LocalizationModule {
 public:
     std::vector<strategy::Point> GetCurrentPositions() {
         //pass
     }
 };
+
+//удалить
+class ComputerVisionModule {
+public:
+    bool IsNearTheEdge() {
+        return false;
+    }
+
+    bool IsNormalTrajectory() {
+        return false;
+    }
+
+    const double GetNewTrajectoryAngle() {
+        return 0;
+    }
+};
+
+//удалить
+class MovementGraph {
+public:
+    bool Move(float x, float y, float theta) {
+        return false;
+    }
+
+    void SetTheta(const double d) {
+
+    }
+};
+
 
 
 class KernelStrategy {
@@ -59,6 +90,7 @@ public:
 private:
     strategy::Robot GetLeader();
     void UpdatePositions();
+    void SprintLogic();
 
 private:
     struct ProAngle {
@@ -74,7 +106,12 @@ private:
     };
 
     std::vector<strategy::Robot>& robots_;
-    LocalizationModule localization{};
+
+    //переписать на прокси
+    LocalizationModule localizationModule{};
+    ComputerVisionModule computerVisionModule{};
+    MovementGraph movementGraph{};
+
     std::atomic<bool> is_terminated_{false};
     std::atomic<bool> is_paused_{false};
     std::vector<std::thread> threads_{};
