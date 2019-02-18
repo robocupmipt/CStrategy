@@ -50,32 +50,13 @@ public:
     }
 };
 
-#include "pch.h"
 
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <iterator>
-#include <sstream>
-#include <string>
-
-
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/calib3d/calib3d.hpp"
-#include "opencv2/highgui/highgui.hpp"
-
-#include <fstream>
-#include <iostream>
-#include <string>
 int X_DIM = 640;//размерность изображения
 int Y_DIM = 480;//размерность изображения
 //удалить
 class ComputerVisionModule {
 public:
-	bool IsNearTheEdge() {
-		return false;
-	}
+
 	std::vector<double> getBallCentre(cv::Mat image)//Центр мяча
 	{
 		std::vector<double> center = { 100,50 };//x,y
