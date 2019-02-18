@@ -50,22 +50,134 @@ public:
     }
 };
 
+#include "pch.h"
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <iterator>
+#include <sstream>
+#include <string>
+
+
+#include "opencv2/core/core.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/calib3d/calib3d.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
+#include <fstream>
+#include <iostream>
+#include <string>
+int X_DIM = 640;//размерность изображения
+int Y_DIM = 480;//размерность изображения
 //удалить
 class ComputerVisionModule {
 public:
-    bool IsNearTheEdge() {
-        return false;
-    }
+	bool IsNearTheEdge() {
+		return false;
+	}
+	std::vector<double> getBallCentre(cv::Mat image)//Центр мяча
+	{
+		std::vector<double> center = { 100,50 };//x,y
+		return center;
+	}
+	std::vector <double> getHorisontalLine(cv::Mat image)//вертикальную линию
+	{
+		std::vector <double> bx = { 0,0 };//k;b 
+		return bx;//пустой вектор, если Горизонтальной линии нет
+	}
+	std::vector <double> getLeftVerticalLine(cv::Mat image)//левую горизонтальную линрию
+	{
+		std::vector <double> bx = { 0,0 };//k;b
+		return bx;//пустой вектор, если левой линии нет
+	}
+	std::vector <double> getRightVerticalLine(cv::Mat image)//правую горизонтальную линию
+	{
+		std::vector <double> bx = { 0,0 };//k;b 
+		return bx;//пустой вектор, если правой линии нет
+	}
+	int BallCondition(double center_y, int allowed_gamma = 100)
+	{
+		if (center_y < double(Y_DIM / 2 - allowed_gamma))//центр мяча смещен влево
+		{
+			return -1;
+		}
+		if (center_y > double(Y_DIM / 2 + allowed_gamma))//центр мяча смещен вправо
+		{
+			return 1;
+		}
+		return 0;//центр мяча не смещен
+	}
+	int LineCondition(std::vector <double> left_line,
+		std::vector <double> right_line)
+	{
+		if (left_line.empty() and !right_line.empty())//левую линию видим, правую нет
+		{
+			return 1;//направо
+		}
+		if (right_line.empty() and !left_line.empty())//левую линию видим, правую нет
+		{
+			return -1;//направо
+		}
+		return 0;
+	}
+	int BackCondition(std::vector <double> horisontal_line, std::vector <double> center)
+	{
+		///если горизонтальную линию не видим, или видим, но она на всем протяжении кадра пролегает за мячом(то есть ее y всегда выше, чем у мяча)
+		
+		///тогда 1
+		///иначе 0
+		double line_y_min = std::min(horisontal_line[1], horisontal_line[1] + horisontal_line[0] * X_DIM);
+		if (horisontal_line.empty() or line_y_min > center[1])
+		{
+			return 1;
+		}
+		return 0;
+	}
+	int ShouldTurn(cv::Mat image, int allowed_gamma = 100)
+	//allowed_gamma - то, на сколько центр мяча может отклоняться от центра картинки, чтобы это еще было норм
+	//Возвращаемое значение : -1 -влево ; 0 - не должен; 1 - вправо;
+	//999 - надо пятиться
+	{
 
-    bool IsNormalTrajectory() {
-        return false;
-    }
+		std::vector <double> left_line = getLeftVerticalLine(image);
+		std::vector <double> right_line = getRightVerticalLine(image);
+		std::vector <double> horisontal_line = getHorisontalLine(image);
+		std::vector <double> center = getBallCentre(image);
+		int back_condition = BackCondition(horisontal_line, center);
 
-    const double GetNewTrajectoryAngle() {
-        return 0;
-    }
+		int line_condition = LineCondition(left_line, right_line);
+		int ball_condition = BallCondition(center[1], allowed_gamma);
+		if (back_condition)//пятиться
+		{
+			return 999;
+		}
+		if (std::abs(ball_condition) > 0)//сначала проверяем условие по мячу
+		{
+			return ball_condition;
+		}
+		if (std::abs(line_condition) > 0)//а потом по линиям
+		{
+			return line_condition;
+		}
+		return false;
+	}
+
+	const double GetNewTrajectoryAngle(cv::Mat image, int allowed_gamma,
+		double current_angle, double delta)//current_angle текущий угол
+		//delta это элементарный угол поворота ( мы можем поворачиваться максимум на 1 элементарный угол)
+	{
+		int to_turn = ShouldTurn(image, allowed_gamma);
+		if (to_turn > 990)//значит, надо возвращать 999, а 999 означает, что надо пятиться
+		{
+			return 999;
+		}
+		else//поворачиваемся на delta вправо или влево
+		{
+			return current_angle + to_turn * delta;
+		}
+	}
 };
-
 //удалить
 class MovementGraph {
 public:
