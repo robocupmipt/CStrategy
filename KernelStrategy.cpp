@@ -62,28 +62,29 @@ bool KernelStrategy::Start() {
     return answer;
 }
 
-std::vector<double> KernelStrategy:ComputerVisionModule::getBallCentre(cv::Mat image)//Центр мяча
+std::vector<double> KernelStrategy:ComputerVisionModule::getBallCentre(cv::Mat image)
+	//Центр мяча(или иного ориентира) или пустой вектор, если его нет
 	{
 		std::vector<double> center = { 100,50 };//x,y
 		return center;
 	}
 std::vector <double> KernelStrategy:ComputerVisionModule::getHorisontalLine(
-        cv::Mat image)//вертикальную линию
+        cv::Mat image)//горизонтальную линию, или пустой вектор, если ее нет 
 	{
 		std::vector <double> bx = { 0,0 };//k;b 
-		return bx;//пустой вектор, если Горизонтальной линии нет
+		return bx;т
 	}
 std::vector <double> KernelStrategy:ComputerVisionModule::getLeftVerticalLine(
-    cv::Mat image)//левую горизонтальную линрию
+    cv::Mat image)//левую вертикальную линию, или пустой вектор, если его нет 
 	{
 		std::vector <double> bx = { 0,0 };//k;b
-		return bx;//пустой вектор, если левой линии нет
+		return bx;
 	}
 std::vector <double> KernelStrategy:ComputerVisionModule::getRightVerticalLine(
-        cv::Mat image)//правую горизонтальную линию
+        cv::Mat image)//правую вертикальную линию, или пустой вектор, если его нет 
 	{
 		std::vector <double> bx = { 0,0 };//k;b 
-		return bx;//пустой вектор, если правой линии нет
+		return bx;
 	}
 int KernelStrategy:ComputerVisionModule::BallCondition(double center_y, int allowed_gamma = 100)
 	{
