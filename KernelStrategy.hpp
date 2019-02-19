@@ -60,7 +60,13 @@ int Y_DIM = 480;//размерность изображения
 //удалить
 class ComputerVisionModule {
 public:
-
+	std::vector <std::vector<double>> getLines(cv::Mat image)
+	{
+		std::vector<double> line1 = {0,0};//k;b
+		std::vector <std::vector<double>> answ;
+		answ.push_back(line1);
+		return answ;
+	}
 	std::vector<double> getBallCentre(cv::Mat image)
 	{//центр мяча(или пустой вектор, если его нет)
 		std::vector<double> center = { 100,50 };//x,y
