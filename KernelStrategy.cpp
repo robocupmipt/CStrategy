@@ -151,7 +151,7 @@ int KernelStrategy:ComputerVisionModule::ShouldTurn(
 		{
 			return line_condition;
 		}
-		return false;
+		return 0;
 	}
 const double KernelStrategy:ComputerVisionModule::GetNewTrajectoryAngle(
     cv::Mat image, int allowed_gamma,double current_angle, double delta)//current_angle текущий угол
