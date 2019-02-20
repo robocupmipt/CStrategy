@@ -82,15 +82,45 @@ std::vector<std::vector<double> > KernelStrategy::ComputerVisionModule::processL
 
 }
 
-std::vector<double> KernelStrategy::ComputerVisionModule::getBallCentre(cv::Mat image)
-//ФУНКЦИЯ ДЛЯ ДЕТЕКЦИИ ЦЕНТРА МЯЧА(ИЛИ ИНОГО ОРИЕНТИРА).
-//Если ориентира нет, выдает пустой вектор
+std::vector<double> KernelStrategy::ComputerVisionModule::getChessboardCentre(
+	cv::Mat image, cv::Size patternsize);
+//interior number of corners)
+//ФУНКЦИЯ ДЛЯ ДЕТЕКЦИИ шахматной доски - ищем среднее значение x для всех найденных углов, на него потом будем ориентироваться)
+//(Если часть углов не попадает в кадр, то значение может быть смещено по сравнению с реальным, 
+//на это потом надо будет сделать поправку, если не будет более приоритетных задач
+//- или же просто сделать allowed_gamma достаточно маленьким для того, чтобы это не имело значения
 {
-	std::vector<double> center = { 100,50 };//x,y
-	return center;
+	vector<cv::Point2f> corners;
+	int tmp_x;
+	int tmp_y;
+	for (i = 3; i <= patternsize[0]; i++)
+	{
+		for (j = 3; j <= patternsize[1]; j++)
+		{
+			bool patternfound = findChessboardCorners(image, cv::Size(i,j), corners,
+				CALIB_CB_ADAPTIVE_THRESH + CALIB_CB_NORMALIZE_IMAGE
+				+ CALIB_CB_FAST_CHECK);
+			if (patternFound)
+			{
+				tmp_x = 0;
+				tmp_y = 0;
+				for (k = 0; k < corners.size(); k++)
+				{
+					tmp_x = tmp_x + corners[k][0];
+					tmp_y = tmp_y + corners[k][1];
+				}
+				tmp_x = tmp_x / corners.size();
+				tmp_y = tmp_y / corners.size();
+			}
+		}
+	}
+	vector <double> answ;
+	answ.push_back(tmp_x);
+	answ.push_back(tmp_y);
+	return answ;
 }
 
-int KernelStrategy::ComputerVisionModule::BallCondition(double center_y, int allowed_gamma = 100)
+int KernelStrategy::ComputerVisionModule::ChessboardCondition(double center_y, int allowed_gamma = 100)
 {
 	if (center_y < double(Y_DIM / 2 - allowed_gamma))//центр мяча смещен влево
 	{
@@ -143,18 +173,18 @@ int KernelStrategy::ComputerVisionModule::ShouldTurn(
 	std::vector<double> horisontal_line = processed_lines[1];
 	std::vector<double> right_line = processed_lines[2];
 
-	std::vector <double> center = getBallCentre(image);
+	std::vector <double> center = getChessboardCentre(image);
 	int back_condition = BackCondition(horisontal_line, center);
 
 	int line_condition = LineCondition(left_line, right_line);
-	int ball_condition = BallCondition(center[1], allowed_gamma);
+	int chessboard_condition = ChessboardCondition(center[1], allowed_gamma);
 	if (back_condition)//пятиться
 	{
 		return 999;
 	}
-	if (std::abs(ball_condition) > 0)//сначала проверяем условие по мячу
+	if (std::abs(chessboard_condition) > 0)//сначала проверяем условие по мячу
 	{
-		return ball_condition;
+		return chessboard_condition;
 	}
 	if (std::abs(line_condition) > 0)//а потом по линиям
 	{

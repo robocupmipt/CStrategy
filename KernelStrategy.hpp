@@ -64,10 +64,10 @@ public:
 		answ.push_back(line1);
 		return answ;
 	}
-	std::vector<double> getBallCentre(cv::Mat image)
+	std::vector<double> getChessboardCentre(cv::Mat image)
 	{//центр мяча(или пустой вектор, если его нет)
-		std::vector<double> center = { 100,50 };//x,y
-		return center;
+		std::vector<double> centre = { 100,50 };//x,y
+		return centre;
 	}
 	std::vector <double> getHorisontalLine(cv::Mat image)
 		//горизонтальную линию(или пустой вектор, если её нет)
@@ -87,7 +87,7 @@ public:
 		std::vector <double> bx = { 0,0 };//k;b 
 		return bx;
 	}
-	int BallCondition(double center_y, int allowed_gamma = 100)
+	int ChessboardCondition(double center_y, int allowed_gamma = 100)
 	{      //центр мяча смещен влево больше чем на allowed_gamma -возвращаем -1,
 		///если вправо то 1, если ни то, ни то, то 0
 
