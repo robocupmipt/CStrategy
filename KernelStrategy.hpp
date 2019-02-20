@@ -54,6 +54,7 @@ public:
 
 int X_DIM = 640;//размерность изображения
 int Y_DIM = 480;//размерность изображения
+cv::Size pattern_size = cv::Size(8, 5);//размерность доски
 //удалить
 class ComputerVisionModule {
 public:

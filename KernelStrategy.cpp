@@ -7,7 +7,7 @@
 #include "opencv2/highgui/highgui.hpp"
 int X_DIM = KernelStrategy::X_DIM;
 int Y_DIM = KernelStrategy::Y_DIM;
-
+cv::Size pattern_size = KernelStrategy::pattern_size;
 std::vector<std::vector<double> > KernelStrategy::ComputerVisionModule::getLines(cv::Mat image)
 {
 	///ФУНКЦИЯ ДЛЯ ДЕТЕКЦИИ ЛИНИЙ
@@ -83,7 +83,7 @@ std::vector<std::vector<double> > KernelStrategy::ComputerVisionModule::processL
 }
 
 std::vector<double> KernelStrategy::ComputerVisionModule::getChessboardCentre(
-	cv::Mat image, cv::Size patternsize);
+	cv::Mat image, cv::Size patternsize=pattern_size);
 //interior number of corners)
 //ФУНКЦИЯ ДЛЯ ДЕТЕКЦИИ шахматной доски - ищем среднее значение x для всех найденных углов, на него потом будем ориентироваться)
 //(Если часть углов не попадает в кадр, то значение может быть смещено по сравнению с реальным, 
