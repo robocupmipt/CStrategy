@@ -11,19 +11,42 @@
 
 using namespace AL;
 
-StrategyModule::StrategyModule(std::shared_ptr<ALBroker> broker, const std::string& name):
-        ALModule(broker, name)
+StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name),
+                                                                                           tts(getParentBroker())
 {
   setModuleDescription("A tiny Strategy Module");
 
-  functionName("UpdateGameState", UpdateGameState(), "UpdateGameState");
+  functionName("UpdateGameState", getName(), "UpdateGameState");
   addParam("state", "The state from GameController");
-  BIND_METHOD(StrategyModule::UpdateGameState());
+  BIND_METHOD(StrategyModule::UpdateGameState);
 }
 
 StrategyModule::~StrategyModule() {}
 
-bool StrategyModule::UpdateGameState(int state) {
-  return kernel_.updateGameState(state);
+void StrategyModule::StartExecuting()
+{
+    const std::string phraseToSay("Hello world");
+    ALTextToSpeechProxy tts(getParentBroker());
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        tts.say(phraseToSay);
+    }
 }
 
+bool StrategyModule::UpdateGameState(int state) {
+    currentGameState = gamecontroller::GameState(state);
+    if (currentGameState == gamecontroller::GameState::FINISHED) {
+        is_terminated_.store(true);
+        return true;
+    }
+    if (currentGameState == gamecontroller::GameState::PLAYING) {
+
+        std::thread main_thread([&](){
+            StartExecuting();
+        });
+
+        //https://en.cppreference.com/w/cpp/thread/thread/detach
+        main_thread.detach();
+        return true;
+    }
+}

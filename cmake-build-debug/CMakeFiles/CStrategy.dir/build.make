@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Users/nikitamikhaylov/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/CLion.app/Contents/bin/cmake/mac/bin/cmake"
+CMAKE_COMMAND = /home/nikita/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = "/Users/nikitamikhaylov/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E remove -f
+RM = /home/nikita/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nikitamikhaylov/CStrategy
+CMAKE_SOURCE_DIR = /home/nikita/Developer/CStrategy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nikitamikhaylov/CStrategy/cmake-build-debug
+CMAKE_BINARY_DIR = /home/nikita/Developer/CStrategy/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CStrategy.dir/depend.make
@@ -59,42 +59,42 @@ include CMakeFiles/CStrategy.dir/flags.make
 
 CMakeFiles/CStrategy.dir/main.cpp.o: CMakeFiles/CStrategy.dir/flags.make
 CMakeFiles/CStrategy.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CStrategy.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CStrategy.dir/main.cpp.o -c /Users/nikitamikhaylov/CStrategy/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CStrategy.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CStrategy.dir/main.cpp.o -c /home/nikita/Developer/CStrategy/main.cpp
 
 CMakeFiles/CStrategy.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CStrategy.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nikitamikhaylov/CStrategy/main.cpp > CMakeFiles/CStrategy.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nikita/Developer/CStrategy/main.cpp > CMakeFiles/CStrategy.dir/main.cpp.i
 
 CMakeFiles/CStrategy.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CStrategy.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nikitamikhaylov/CStrategy/main.cpp -o CMakeFiles/CStrategy.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nikita/Developer/CStrategy/main.cpp -o CMakeFiles/CStrategy.dir/main.cpp.s
 
 CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o: CMakeFiles/CStrategy.dir/flags.make
 CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o: ../KernelStrategy.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o -c /Users/nikitamikhaylov/CStrategy/KernelStrategy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o -c /home/nikita/Developer/CStrategy/KernelStrategy.cpp
 
 CMakeFiles/CStrategy.dir/KernelStrategy.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CStrategy.dir/KernelStrategy.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nikitamikhaylov/CStrategy/KernelStrategy.cpp > CMakeFiles/CStrategy.dir/KernelStrategy.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nikita/Developer/CStrategy/KernelStrategy.cpp > CMakeFiles/CStrategy.dir/KernelStrategy.cpp.i
 
 CMakeFiles/CStrategy.dir/KernelStrategy.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CStrategy.dir/KernelStrategy.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nikitamikhaylov/CStrategy/KernelStrategy.cpp -o CMakeFiles/CStrategy.dir/KernelStrategy.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nikita/Developer/CStrategy/KernelStrategy.cpp -o CMakeFiles/CStrategy.dir/KernelStrategy.cpp.s
 
 CMakeFiles/CStrategy.dir/StrategyModule.cpp.o: CMakeFiles/CStrategy.dir/flags.make
 CMakeFiles/CStrategy.dir/StrategyModule.cpp.o: ../StrategyModule.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CStrategy.dir/StrategyModule.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CStrategy.dir/StrategyModule.cpp.o -c /Users/nikitamikhaylov/CStrategy/StrategyModule.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CStrategy.dir/StrategyModule.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CStrategy.dir/StrategyModule.cpp.o -c /home/nikita/Developer/CStrategy/StrategyModule.cpp
 
 CMakeFiles/CStrategy.dir/StrategyModule.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CStrategy.dir/StrategyModule.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nikitamikhaylov/CStrategy/StrategyModule.cpp > CMakeFiles/CStrategy.dir/StrategyModule.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nikita/Developer/CStrategy/StrategyModule.cpp > CMakeFiles/CStrategy.dir/StrategyModule.cpp.i
 
 CMakeFiles/CStrategy.dir/StrategyModule.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CStrategy.dir/StrategyModule.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nikitamikhaylov/CStrategy/StrategyModule.cpp -o CMakeFiles/CStrategy.dir/StrategyModule.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nikita/Developer/CStrategy/StrategyModule.cpp -o CMakeFiles/CStrategy.dir/StrategyModule.cpp.s
 
 # Object files for target CStrategy
 CStrategy_OBJECTS = \
@@ -110,7 +110,7 @@ CStrategy: CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o
 CStrategy: CMakeFiles/CStrategy.dir/StrategyModule.cpp.o
 CStrategy: CMakeFiles/CStrategy.dir/build.make
 CStrategy: CMakeFiles/CStrategy.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable CStrategy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable CStrategy"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CStrategy.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -123,6 +123,6 @@ CMakeFiles/CStrategy.dir/clean:
 .PHONY : CMakeFiles/CStrategy.dir/clean
 
 CMakeFiles/CStrategy.dir/depend:
-	cd /Users/nikitamikhaylov/CStrategy/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/nikitamikhaylov/CStrategy /Users/nikitamikhaylov/CStrategy /Users/nikitamikhaylov/CStrategy/cmake-build-debug /Users/nikitamikhaylov/CStrategy/cmake-build-debug /Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles/CStrategy.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/nikita/Developer/CStrategy/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nikita/Developer/CStrategy /home/nikita/Developer/CStrategy /home/nikita/Developer/CStrategy/cmake-build-debug /home/nikita/Developer/CStrategy/cmake-build-debug /home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles/CStrategy.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/CStrategy.dir/depend
 

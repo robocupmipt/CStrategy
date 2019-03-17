@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Users/nikitamikhaylov/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/CLion.app/Contents/bin/cmake/mac/bin/cmake"
+CMAKE_COMMAND = /home/nikita/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = "/Users/nikitamikhaylov/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E remove -f
+RM = /home/nikita/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nikitamikhaylov/CStrategy
+CMAKE_SOURCE_DIR = /home/nikita/Developer/CStrategy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nikitamikhaylov/CStrategy/cmake-build-debug
+CMAKE_BINARY_DIR = /home/nikita/Developer/CStrategy/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/nikitamikhaylov/CStrategy/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"/Users/nikitamikhaylov/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/CLion.app/Contents/bin/cmake/mac/bin/cmake" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/nikita/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"/Users/nikitamikhaylov/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/nikita/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles /Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles /home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -110,100 +110,6 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named CStrategy
-
-# Build rule for target.
-CStrategy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 CStrategy
-.PHONY : CStrategy
-
-# fast build rule for target.
-CStrategy/fast:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/build
-.PHONY : CStrategy/fast
-
-KernelStrategy.o: KernelStrategy.cpp.o
-
-.PHONY : KernelStrategy.o
-
-# target to build an object file
-KernelStrategy.cpp.o:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o
-.PHONY : KernelStrategy.cpp.o
-
-KernelStrategy.i: KernelStrategy.cpp.i
-
-.PHONY : KernelStrategy.i
-
-# target to preprocess a source file
-KernelStrategy.cpp.i:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/KernelStrategy.cpp.i
-.PHONY : KernelStrategy.cpp.i
-
-KernelStrategy.s: KernelStrategy.cpp.s
-
-.PHONY : KernelStrategy.s
-
-# target to generate assembly for a file
-KernelStrategy.cpp.s:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/KernelStrategy.cpp.s
-.PHONY : KernelStrategy.cpp.s
-
-StrategyModule.o: StrategyModule.cpp.o
-
-.PHONY : StrategyModule.o
-
-# target to build an object file
-StrategyModule.cpp.o:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/StrategyModule.cpp.o
-.PHONY : StrategyModule.cpp.o
-
-StrategyModule.i: StrategyModule.cpp.i
-
-.PHONY : StrategyModule.i
-
-# target to preprocess a source file
-StrategyModule.cpp.i:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/StrategyModule.cpp.i
-.PHONY : StrategyModule.cpp.i
-
-StrategyModule.s: StrategyModule.cpp.s
-
-.PHONY : StrategyModule.s
-
-# target to generate assembly for a file
-StrategyModule.cpp.s:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/StrategyModule.cpp.s
-.PHONY : StrategyModule.cpp.s
-
-main.o: main.cpp.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/CStrategy.dir/build.make CMakeFiles/CStrategy.dir/main.cpp.s
-.PHONY : main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -212,16 +118,6 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... CStrategy"
-	@echo "... KernelStrategy.o"
-	@echo "... KernelStrategy.i"
-	@echo "... KernelStrategy.s"
-	@echo "... StrategyModule.o"
-	@echo "... StrategyModule.i"
-	@echo "... StrategyModule.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 .PHONY : help
 
 

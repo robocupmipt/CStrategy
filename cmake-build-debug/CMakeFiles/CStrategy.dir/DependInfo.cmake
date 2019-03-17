@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/nikitamikhaylov/CStrategy/KernelStrategy.cpp" "/Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o"
-  "/Users/nikitamikhaylov/CStrategy/StrategyModule.cpp" "/Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles/CStrategy.dir/StrategyModule.cpp.o"
-  "/Users/nikitamikhaylov/CStrategy/main.cpp" "/Users/nikitamikhaylov/CStrategy/cmake-build-debug/CMakeFiles/CStrategy.dir/main.cpp.o"
+  "/home/nikita/Developer/CStrategy/KernelStrategy.cpp" "/home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles/CStrategy.dir/KernelStrategy.cpp.o"
+  "/home/nikita/Developer/CStrategy/StrategyModule.cpp" "/home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles/CStrategy.dir/StrategyModule.cpp.o"
+  "/home/nikita/Developer/CStrategy/main.cpp" "/home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles/CStrategy.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
