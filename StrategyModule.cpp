@@ -25,21 +25,33 @@ StrategyModule::~StrategyModule() {}
 
 void StrategyModule::StartExecuting()
 {
-    const std::string phraseToSay("Hello world");
     ALTextToSpeechProxy tts(getParentBroker());
-    while (true) {
+    tts.say("start module");
+    while (is_started_.load()) {
+      if(is_terminated_.load() == true) {
+
+        // stop all modules
+        tts.say("finished");
+
+        is_terminated_.store(false);
+      }
+        std::cout << "kek\n";
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        tts.say(phraseToSay);
     }
 }
 
-bool StrategyModule::UpdateGameState(int state) {
+void StrategyModule::UpdateGameState(int state) {
+    std::cout << "state = " << state << '\n';
     currentGameState = gamecontroller::GameState(state);
-    if (currentGameState == gamecontroller::GameState::FINISHED) {
-        is_terminated_.store(true);
-        return true;
+
+    if((currentGameState == gamecontroller::GameState::FINISHED) && (is_started_.load() == true))
+    {
+      is_started_.store(false);
+      is_terminated_.store(true);
     }
-    if (currentGameState == gamecontroller::GameState::PLAYING) {
+
+    if (is_started_.load() == false) {
+        is_started_.store(true);
 
         std::thread main_thread([&](){
             StartExecuting();
@@ -47,6 +59,7 @@ bool StrategyModule::UpdateGameState(int state) {
 
         //https://en.cppreference.com/w/cpp/thread/thread/detach
         main_thread.detach();
-        return true;
     }
+
+    return true;
 }

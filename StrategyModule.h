@@ -80,7 +80,7 @@ public:
     /* This is called right after the module has been loaded*/
     virtual void init() {};
 
-    bool UpdateGameState(int);
+    void UpdateGameState(int);
 
 private:
     void StartExecuting();
@@ -103,6 +103,7 @@ private:
     MovementGraph movementGraph{};
 
     std::atomic<bool> is_terminated_{false};
+    std::atomic<bool> is_started_{false};
     std::atomic<bool> is_paused_{false};
 
     std::atomic<gamecontroller::GameState> currentGameState;

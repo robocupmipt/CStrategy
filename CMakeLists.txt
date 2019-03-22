@@ -14,6 +14,7 @@ option(MYMODULE_IS_REMOTE
 
 # Create a list of source files
 set(_srcs
+        main.cpp
         GameController.h
         StrategyModule.h
         StrategyModule.cpp)
