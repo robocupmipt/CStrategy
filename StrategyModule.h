@@ -77,7 +77,7 @@ public:
 
     virtual ~StrategyModule();
 
-    virtual void init() {};
+    virtual void init();
 
 private:
     struct ProAngle {
@@ -101,6 +101,8 @@ private:
     void sayState(gamecontroller::GameState state);
     void UpdateGameState(int);
     void StartExecuting();
+
+    void startMovementTest();
 
     std::atomic<bool> is_terminated_{false};
     std::atomic<bool> is_started_{false};
