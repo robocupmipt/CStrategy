@@ -77,13 +77,7 @@ public:
 
     virtual ~StrategyModule();
 
-    /* This is called right after the module has been loaded*/
     virtual void init() {};
-
-    void UpdateGameState(int);
-
-private:
-    void StartExecuting();
 
 private:
     struct ProAngle {
@@ -102,13 +96,19 @@ private:
     LocalizationModule localizationModule{};
     MovementGraph movementGraph{};
 
+/* ----------------------------------------------------- */
+
+    void sayState(gamecontroller::GameState state);
+    void UpdateGameState(int);
+    void StartExecuting();
+
     std::atomic<bool> is_terminated_{false};
     std::atomic<bool> is_started_{false};
-    std::atomic<bool> is_paused_{false};
-
     std::atomic<gamecontroller::GameState> currentGameState;
 
     AL::ALTextToSpeechProxy tts;
+
+/* ----------------------------------------------------- */
 };
 
 #endif //CSTRATEGY_STRATEGYMODULE_H
