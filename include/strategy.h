@@ -8,6 +8,7 @@
 #include <alcommon/almodule.h>
 #include <alproxies/altexttospeechproxy.h>
 #include <alcommon/albroker.h>
+#include <alproxies/almemoryproxy.h>
 
 #include <memory>
 #include <string>
@@ -99,7 +100,7 @@ private:
 /* ----------------------------------------------------- */
 
     void sayState(gamecontroller::GameState state);
-    void UpdateGameState(int);
+    void UpdateGameState(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg);
     void StartExecuting();
 
     void startMovementTest();

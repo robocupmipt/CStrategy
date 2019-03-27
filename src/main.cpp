@@ -8,7 +8,7 @@
 #include <alcommon/albrokermanager.h>
 #include <alcommon/altoolsmain.h>
 
-#include "../include/StrategyModule.h"
+#include "../include/strategy.h"
 
 #ifdef MYMODULE_IS_REMOTE
 #   define ALCALL
