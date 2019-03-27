@@ -7,13 +7,11 @@
 
 using namespace AL;
 
-StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name),
-                                                                                           tts(getParentBroker())
+StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name), tts(getParentBroker()), fMemoryProxy(getParentBroker())
 {
   setModuleDescription("A tiny Strategy Module");
 
-  functionName("UpdateGameState", getName(), "UpdateGameState");
-  addParam("state", "The state from GameController");
+  functionName("UpdateGameState", getName(), "");
   BIND_METHOD(StrategyModule::UpdateGameState);
 }
 
@@ -21,10 +19,13 @@ void StrategyModule::init()
 {
   std::cout << "init\n";
 
-  startMovementTest();
+  fMemoryProxy.subscribeToEvent("GameStateChanged", "Communication", "Game State", "UpdateGameState");
 }
 
-StrategyModule::~StrategyModule() {}
+StrategyModule::~StrategyModule()
+{
+  fMemoryProxy.unsubscribeToEvent("GameStateChanges", "Communication");
+}
 
 void StrategyModule::StartExecuting()
 {
@@ -46,7 +47,13 @@ void StrategyModule::StartExecuting()
     }
 }
 
-void StrategyModule::UpdateGameState(int state) {
+void StrategyModule::UpdateGameState(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg)
+{
+  std::cout << "Callback: " << key << std::endl;
+  std::cout << "Value: " << value << std::endl;
+  std::cout << "Msg: " << msg << std::endl;
+
+  /*
     ALTextToSpeechProxy tts(getParentBroker());
 
     currentGameState = gamecontroller::GameState(state);
@@ -70,6 +77,7 @@ void StrategyModule::UpdateGameState(int state) {
         //https://en.cppreference.com/w/cpp/thread/thread/detach
         main_thread.detach();
     }
+    */
 }
 
 void StrategyModule::sayState(gamecontroller::GameState state)

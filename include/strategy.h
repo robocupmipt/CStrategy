@@ -110,6 +110,7 @@ private:
 
     AL::ALTextToSpeechProxy tts;
 
+    AL::ALMemoryProxy fMemoryProxy;
 /* ----------------------------------------------------- */
 };
 
