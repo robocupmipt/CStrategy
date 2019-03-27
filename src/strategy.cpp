@@ -21,11 +21,12 @@ StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::st
 void StrategyModule::init()
 {
   std::cout << "init\n";
+
+  startMovementTest();
 }
 
 StrategyModule::~StrategyModule()
 {
-  fMemoryProxy.unsubscribeToEvent("GameStateChanged", "StrategyModule");
 }
 
 void StrategyModule::executingLoop()
@@ -185,7 +186,7 @@ void StrategyModule::startMovementTest()
       std::cin >> theta;
       std::cout << "theta = " << theta << '\n';
 
-      proxyMovement.callVoid("SetHeadHorizontalAngle", theta);
+      proxyMovement.callVoid("SetHeadVerticalAngle", theta);
     }
 
     else if(command == "SetHeadHorizontalAngle")
