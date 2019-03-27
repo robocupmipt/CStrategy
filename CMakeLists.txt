@@ -14,10 +14,8 @@ option(MYMODULE_IS_REMOTE
 
 # Create a list of source files
 set(_srcs
-        main.cpp
-        GameController.h
-        StrategyModule.h
-        StrategyModule.cpp)
+        src/main.cpp
+        src/StrategyModule.cpp)
 
 if(MYMODULE_IS_REMOTE)
     # Add a compile flag because code changes a little bit

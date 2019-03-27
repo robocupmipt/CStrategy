@@ -1,4 +1,4 @@
-#include "StrategyModule.h"
+#include "../include/StrategyModule.h"
 
 #include <iostream>
 #include <alcommon/albroker.h>
