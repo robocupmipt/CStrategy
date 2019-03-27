@@ -4,11 +4,12 @@
 
 #ifndef CSTRATEGY_STRATEGYMODULE_H
 #define CSTRATEGY_STRATEGYMODULE_H
-
 #include <alcommon/almodule.h>
 #include <alproxies/altexttospeechproxy.h>
 #include <alcommon/albroker.h>
 #include <alproxies/almemoryproxy.h>
+#include <alcommon/alproxy.h>
+#include <alvalue/alvalue.h>
 
 #include <memory>
 #include <string>
@@ -99,9 +100,13 @@ private:
 
 /* ----------------------------------------------------- */
 
+    void callback(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg);
+
     void sayState(gamecontroller::GameState state);
     void UpdateGameState(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg);
     void StartExecuting();
+
+    void executingLoop();
 
     void startMovementTest();
 
@@ -109,7 +114,7 @@ private:
     std::atomic<bool> is_started_{false};
     std::atomic<gamecontroller::GameState> currentGameState;
 
-    AL::ALTextToSpeechProxy tts;
+    AL::ALTextToSpeechProxy tts_;
 
     AL::ALMemoryProxy fMemoryProxy;
 /* ----------------------------------------------------- */
