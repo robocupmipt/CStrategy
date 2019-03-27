@@ -7,24 +7,31 @@
 
 using namespace AL;
 
-StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name),
-                                                                                           tts(getParentBroker())
+StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name), tts_(getParentBroker()), fMemoryProxy(getParentBroker())
 {
   setModuleDescription("A tiny Strategy Module");
 
-  functionName("UpdateGameState", getName(), "UpdateGameState");
-  addParam("state", "The state from GameController");
+  functionName("UpdateGameState", getName(), "");
   BIND_METHOD(StrategyModule::UpdateGameState);
+
+  fMemoryProxy.subscribeToEvent("GameStateChanged", "StrategyModule", "Game State", "UpdateGameState");
+  std::cout << "subsribed successfully" << std::endl;
 }
 
 void StrategyModule::init()
 {
   std::cout << "init\n";
-
-  startMovementTest();
 }
 
-StrategyModule::~StrategyModule() {}
+StrategyModule::~StrategyModule()
+{
+  fMemoryProxy.unsubscribeToEvent("GameStateChanged", "StrategyModule");
+}
+
+void StrategyModule::executingLoop()
+{
+  std::cout << "executing..." << std::endl;
+}
 
 void StrategyModule::StartExecuting()
 {
@@ -41,17 +48,16 @@ void StrategyModule::StartExecuting()
       {
         std::cout << "state " << (int)currentGameState << '\n';
 
+        executingLoop();
         std::this_thread::sleep_for(std::chrono::seconds(1));
       }
     }
 }
 
-void StrategyModule::UpdateGameState(int state) {
-    ALTextToSpeechProxy tts(getParentBroker());
-
-    currentGameState = gamecontroller::GameState(state);
-
-    sayState(currentGameState);
+void StrategyModule::UpdateGameState(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg)
+{
+    int buf = (int) value;
+    currentGameState = (gamecontroller::GameState)buf;
 
     if((currentGameState == gamecontroller::GameState::FINISHED) && (is_started_.load() == true))
     {
@@ -77,19 +83,19 @@ void StrategyModule::sayState(gamecontroller::GameState state)
     switch(state)
     {
       case 0:
-        tts.say("initial");
+        tts_.say("initial");
         break;
       case 1:
-        tts.say("ready");
+        tts_.say("ready");
         break;
       case 2:
-        tts.say("set");
+        tts_.say("set");
         break;
       case 3:
-        tts.say("playing");
+        tts_.say("playing");
         break;
       case 4:
-        tts.say("finished");
+        tts_.say("finished");
         break;
     }
 }
@@ -246,5 +252,4 @@ void StrategyModule::startMovementTest()
   }
   while(command != "exit");
 }
-
 
