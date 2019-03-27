@@ -1,7 +1,0 @@
-/home/nikita/Developer/CStrategy/build-linux-sdk/CMakeFiles/install.dir
-/home/nikita/Developer/CStrategy/build-linux-sdk/CMakeFiles/list_install_components.dir
-/home/nikita/Developer/CStrategy/build-linux-sdk/CMakeFiles/rebuild_cache.dir
-/home/nikita/Developer/CStrategy/build-linux-sdk/CMakeFiles/StrategyModule.dir
-/home/nikita/Developer/CStrategy/build-linux-sdk/CMakeFiles/install/strip.dir
-/home/nikita/Developer/CStrategy/build-linux-sdk/CMakeFiles/install/local.dir
-/home/nikita/Developer/CStrategy/build-linux-sdk/CMakeFiles/edit_cache.dir
