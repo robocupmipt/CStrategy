@@ -1,0 +1,26 @@
+/home/nikita/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/nikita/Developer/CStrategy
+-- Using qibuild 3.12
+-- Binary: StrategyModule
+CMake Error at /home/nikita/.local/share/cmake/qibuild/internal/uselib.cmake:80 (find_package):
+  By not providing "FindALCOMMON.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "ALCOMMON",
+  but CMake did not find one.
+
+  Could not find a package configuration file provided by "ALCOMMON" with any
+  of the following names:
+
+    ALCOMMONConfig.cmake
+    alcommon-config.cmake
+
+  Add the installation prefix of "ALCOMMON" to CMAKE_PREFIX_PATH or set
+  "ALCOMMON_DIR" to a directory containing one of the above files.  If
+  "ALCOMMON" provides a separate development package or SDK, be sure it has
+  been installed.
+Call Stack (most recent call first):
+  /home/nikita/.local/share/cmake/qibuild/internal/uselib.cmake:197 (_qi_use_lib_get_deps)
+  /home/nikita/.local/share/cmake/qibuild/stage.cmake:247 (_qi_use_lib_internal)
+  CMakeLists.txt:40 (qi_use_lib)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/nikita/Developer/CStrategy/cmake-build-debug/CMakeFiles/CMakeOutput.log".
