@@ -1,5 +1,4 @@
 #include "../include/strategy.h"
-
 #include <iostream>
 #include <alcommon/albroker.h>
 #include <qi/log.hpp>
@@ -9,8 +8,6 @@ using namespace AL;
 
 StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name), tts_(getParentBroker()), fMemoryProxy(getParentBroker())
 {
-  setModuleDescription("A tiny Strategy Module");
-
   functionName("UpdateGameState", getName(), "");
   BIND_METHOD(StrategyModule::UpdateGameState);
 
@@ -27,11 +24,20 @@ void StrategyModule::init()
 
 StrategyModule::~StrategyModule()
 {
+
 }
 
-void StrategyModule::executingLoop()
+void StrategyModule::ExecutingLoop()
 {
+  std::cout << "state " << (int)currentGameState << '\n';
+
   std::cout << "executing..." << std::endl;
+  std::this_thread::sleep_for(std::chrono::seconds(1));
+}
+
+void StrategyModule::CompleteExecuting()
+{
+  std::cout << "finish\n";
 }
 
 void StrategyModule::StartExecuting()
@@ -43,14 +49,11 @@ void StrategyModule::StartExecuting()
         is_started_.store(false);
         is_terminated_.store(false);
 
-        std::cout << "finish\n";
+        CompleteExecuting();
       }
       else
       {
-        std::cout << "state " << (int)currentGameState << '\n';
-
-        executingLoop();
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        ExecutingLoop();
       }
     }
 }
@@ -65,7 +68,8 @@ void StrategyModule::UpdateGameState(const std::string &key, const AL::ALValue &
       is_terminated_.store(true);
     }
 
-    if (is_started_.load() == false) {
+    if (is_started_.load() == false)
+    {
         is_started_.store(true);
 
         std::cout << "start\n";
@@ -79,7 +83,7 @@ void StrategyModule::UpdateGameState(const std::string &key, const AL::ALValue &
     }
 }
 
-void StrategyModule::sayState(gamecontroller::GameState state)
+void StrategyModule::SayState(gamecontroller::GameState state)
 {
     switch(state)
     {
@@ -101,7 +105,7 @@ void StrategyModule::sayState(gamecontroller::GameState state)
     }
 }
 
-void StrategyModule::startMovementTest()
+void StrategyModule::StartMovementTest()
 {
   std::string command;
 

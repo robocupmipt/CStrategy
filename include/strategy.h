@@ -17,10 +17,79 @@
 #include <atomic>
 #include <thread>
 #include <chrono>
-
 #include "GameController.h"
 
 using namespace AL;
+
+namespace AL
+{
+    class ALBroker;
+}
+
+class StrategyModule : public AL::ALModule
+{
+public:
+    StrategyModule(boost::shared_ptr<AL::ALBroker> pBroker, const std::string& pName);
+
+    virtual ~StrategyModule();
+
+    virtual void init();
+
+private:
+
+    /* Tools for GameController Event */
+    AL::ALMemoryProxy fMemoryProxy;
+    void UpdateGameState(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg);
+
+    /* Start */
+    void StartExecuting();
+
+/* --------------------------------------- */
+/* ---------------- DO IT ---------------- */
+/* --------------------------------------- */
+    /* Loop to control other modules */
+    void ExecutingLoop();
+
+    /* Function to stop other modules when finished */
+    void CompleteExecuting()
+/* --------------------------------------- */
+/* ---------------- DO IT ---------------- */
+/* --------------------------------------- */
+
+    /* Proxy movement test */
+    void StartMovementTest();
+
+    /* Atomics for work with GameController */
+    std::atomic<bool> is_terminated_{false};
+    std::atomic<bool> is_started_{false};
+    std::atomic<gamecontroller::GameState> currentGameState;
+
+    /* For control robot states when module is local */
+    void SayState(gamecontroller::GameState state);
+    AL::ALTextToSpeechProxy tts_;
+
+/* ----------------- TRASH ----------------------- */
+
+    struct ProAngle {
+
+        ProAngle(double l, double r, double s) :
+                left_(l),
+                right_(r),
+                step_(s) {}
+
+        double left_;
+        double right_;
+        double step_;
+    };
+
+    //переписать на прокси
+    LocalizationModule localizationModule{};
+    MovementGraph movementGraph{};
+
+/* ----------------- TRASH ----------------------- */
+};
+
+/* ------- ---- NEW PORTION OF TRASH -------------- */
 
 namespace strategy {
     struct Command {
@@ -67,57 +136,6 @@ public:
     }
 };
 
-namespace AL
-{
-    class ALBroker;
-}
-
-class StrategyModule : public AL::ALModule
-{
-public:
-    StrategyModule(boost::shared_ptr<AL::ALBroker> pBroker, const std::string& pName);
-
-    virtual ~StrategyModule();
-
-    virtual void init();
-
-private:
-    struct ProAngle {
-
-        ProAngle(double l, double r, double s) :
-                left_(l),
-                right_(r),
-                step_(s) {}
-
-        double left_;
-        double right_;
-        double step_;
-    };
-
-    //переписать на прокси
-    LocalizationModule localizationModule{};
-    MovementGraph movementGraph{};
-
-/* ----------------------------------------------------- */
-
-    void callback(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg);
-
-    void sayState(gamecontroller::GameState state);
-    void UpdateGameState(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg);
-    void StartExecuting();
-
-    void executingLoop();
-
-    void startMovementTest();
-
-    std::atomic<bool> is_terminated_{false};
-    std::atomic<bool> is_started_{false};
-    std::atomic<gamecontroller::GameState> currentGameState;
-
-    AL::ALTextToSpeechProxy tts_;
-
-    AL::ALMemoryProxy fMemoryProxy;
-/* ----------------------------------------------------- */
-};
+/* ------- ---- NEW PORTION OF TRASH -------------- */
 
 #endif //CSTRATEGY_STRATEGYMODULE_H
