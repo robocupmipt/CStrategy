@@ -10,6 +10,7 @@
 #include <alproxies/almemoryproxy.h>
 #include <alcommon/alproxy.h>
 #include <alvalue/alvalue.h>
+#include"../include/message.hpp"
 
 #include <memory>
 #include <string>
@@ -67,6 +68,7 @@ private:
     /* For control robot states when module is local */
     void SayState(gamecontroller::GameState state);
     AL::ALTextToSpeechProxy tts_;
+    Message message_;
 
 /* ----------------- TRASH ----------------------- */
 

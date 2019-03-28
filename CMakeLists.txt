@@ -15,6 +15,7 @@ option(MYMODULE_IS_REMOTE
 # Create a list of source files
 set(_srcs
         src/main.cpp
+        src/message.cpp
         src/strategy.cpp)
 
 if(MYMODULE_IS_REMOTE)
