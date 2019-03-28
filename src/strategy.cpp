@@ -19,7 +19,7 @@ void StrategyModule::init()
 {
   std::cout << "init\n";
 
-  startMovementTest();
+  StartMovementTest();
 }
 
 StrategyModule::~StrategyModule()

@@ -51,7 +51,7 @@ private:
     void ExecutingLoop();
 
     /* Function to stop other modules when finished */
-    void CompleteExecuting()
+    void CompleteExecuting();
 /* --------------------------------------- */
 /* ---------------- DO IT ---------------- */
 /* --------------------------------------- */
@@ -83,8 +83,8 @@ private:
     };
 
     //переписать на прокси
-    LocalizationModule localizationModule{};
-    MovementGraph movementGraph{};
+    //LocalizationModule localizationModule{};
+    //MovementGraph movementGraph{};
 
 /* ----------------- TRASH ----------------------- */
 };
