@@ -1,13 +1,18 @@
-#include "../include/StrategyModule.h"
+//
+// Created by Nikita Mikhaylov and Vladislav Molodtsov on 2019-03-29.
+//
+
 #include <iostream>
 #include <alcommon/albroker.h>
 #include <qi/log.hpp>
 #include <alproxies/altexttospeechproxy.h>
-#include"../include/message.hpp"
+
+#include"../include/Message.hpp"
+#include "../include/StrategyModule.h"
 
 using namespace AL;
 
-StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name), tts_(getParentBroker()), fMemoryProxy(getParentBroker()), message_(FROM_STRATEGY_TO_COMMUNICATION, FROM_COMMUNICATION_TO_STRATEGY)
+StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name), tts_(getParentBroker()), message_(FROM_STRATEGY_TO_COMMUNICATION, FROM_COMMUNICATION_TO_STRATEGY)
 {
 }
 
@@ -132,24 +137,28 @@ void StrategyModule::SayState(gamecontroller::GameState state)
 {
     switch(state)
     {
-      case 0:
+      case INITIAL:
         tts_.say("initial");
         break;
-      case 1:
+      case READY:
         tts_.say("ready");
         break;
-      case 2:
+      case SET:
         tts_.say("set");
         break;
-      case 3:
+      case PLAYING:
         tts_.say("playing");
         break;
-      case 4:
+      case FINISHED:
         tts_.say("finished");
+        break;
+      case PENALIZED:
+        tts_.say("penalized");
         break;
     }
 }
 
+/* Vlad will remove soon */
 void StrategyModule::StartMovementTest()
 {
   std::string command;

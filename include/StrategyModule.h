@@ -1,5 +1,5 @@
 //
-// Created by Nikita Mikhaylov on 2019-03-17.
+// Created by Nikita Mikhaylov and Vladislav Molodtsov on 2019-03-29.
 //
 
 #ifndef CSTRATEGY_STRATEGYMODULE_H
@@ -18,10 +18,11 @@
 #include <thread>
 #include <chrono>
 
-#include "GameController.h"
 #include "ComputerVisionAdapter.h"
 #include "MovementGraphAdapter.h"
 #include "LocalizationModuleAdapter.h"
+#include "GCStates.h"
+#include "Message.hpp"
 
 using namespace AL;
 
@@ -41,16 +42,8 @@ public:
 
 private:
 
-    /* Tools for GameController Event */
-    AL::ALMemoryProxy fMemoryProxy;
-    void UpdateGameState(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg);
-
-    //TEST TOOLS
-    /* Proxy movement test */
-    void StartMovementTest();
-    /* For control robot states when module is local */
-    void SayState(gamecontroller::GameState state);
-    //TEST TOOLS
+    void UpdateGameState(gamecontroller::GameState state);
+    void ReceiveLoop();
 
     /* Start */
     void StartExecuting();
@@ -61,6 +54,13 @@ private:
     /* Function to stop other modules when finished */
     void CompleteExecuting();
 
+    //TEST TOOLS
+    /* Proxy movement test */
+    void StartMovementTest();
+    /* For control robot states when module is local */
+    void SayState(gamecontroller::GameState state);
+    //TEST TOOLS
+
     void RotateHeadToFindBall();
 
 private:
@@ -68,6 +68,7 @@ private:
     std::atomic<bool> is_terminated_{false};
     std::atomic<bool> is_started_{false};
     std::atomic<gamecontroller::GameState> currentGameState;
+    Message message_;
 
     AL::ALTextToSpeechProxy tts_;
     MovementGraphAdapter movement_graph_adapter_{};

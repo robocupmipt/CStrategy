@@ -1,7 +1,12 @@
+//
+// Created by Vladislav Molodtsov on 2019-03-29.
+//
+
 #include"iostream"
-#include"../include/message.hpp"
 #include<thread>
 #include<unistd.h>
+
+#include"../include/Message.hpp"
 
 Message::Message()
 {
