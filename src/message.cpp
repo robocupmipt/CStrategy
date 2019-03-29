@@ -40,7 +40,7 @@ bool Message::InitMsg()
 	}
 }
 
-MessageInputBuf& Message::ReceiveMessage()
+MessageInputBuf Message::ReceiveMessage()
 {
   MessageInputBuf buf;
 

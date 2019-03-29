@@ -73,7 +73,7 @@ class Message
 
   bool SetMessageTypes(int output, int input);
 
-  MessageInputBuf& ReceiveMessage();
+  MessageInputBuf ReceiveMessage();
 
   private:
 
