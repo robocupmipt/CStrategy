@@ -11,7 +11,8 @@ namespace gamecontroller {
         READY,
         SET,
         PLAYING,
-        FINISHED
+        FINISHED,
+        PENALIZED
     };
 
 } //namespace gamecontroller
