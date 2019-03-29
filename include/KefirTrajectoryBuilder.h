@@ -8,7 +8,7 @@
 
 #include "Point2D.h"
 
-class KefirTrajectory_balluilder{
+class KefirBallTrajectoryBuilder{
 private :
     /*Constants*/
     /*TODO: fix the constants to the field's constants */
@@ -23,7 +23,7 @@ private :
     const int ROBOT_SIZE    = 50;
 
 public:
-    std::vector<Point2d> find_trajectory (Point2D robot, Point2D ball, int max_step)
+    std::vector<Point2d> FindTrajectory (Point2D robot, Point2D ball, int max_step)
     {
         double x_robot = robot.x;
         double y_robot = robot.y;
