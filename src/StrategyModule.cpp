@@ -1,4 +1,4 @@
-#include "../include/strategy.h"
+#include "../include/StrategyModule.h"
 #include <iostream>
 #include <alcommon/albroker.h>
 #include <qi/log.hpp>
@@ -46,9 +46,34 @@ void StrategyModule::ExecutingLoop()
   std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
+void StrategyModule::RotateHeadToFindBall()
+{
+    const double initial_horizontal_angle = -3;
+    const double initial_vertical_angle =   -1;
+    const double final_horizontal_angle =    3;
+    const double final_vertical_angle =      1;
+    const double horizontal_step =           1;
+    const double vertical_step =            0.5;
+
+    double horizontal_angle = initial_horizontal_angle;
+    double vertical_angle = initial_vertical_angle;
+
+    while (horizontal_angle <= final_horizontal_angle) {
+        movement_graph_adapter_.SetHeadHorizontalAngle(horizontal_angle);
+        while (vertical_angle <= final_vertical_angle) {
+            movement_graph_adapter_.SetHeadVerticalAngle(vertical_angle);
+            //time to detect ball in other thread in ComputerVisionModule
+            std::this_thread::sleep_for (std::chrono::seconds(1));
+            vertical_angle += vertical_step;
+        }
+        horizontal_angle += horizontal_step;
+    }
+}
+
 void StrategyModule::CompleteExecuting()
 {
-  std::cout << "finish\n";
+    RotateHeadToFindBall();
+    std::cout << "finish\n";
 }
 
 void StrategyModule::StartExecuting()
@@ -92,6 +117,15 @@ void StrategyModule::UpdateGameState(gamecontroller::GameState state)
         //https://en.cppreference.com/w/cpp/thread/thread/detach
         main_thread.detach();
     }
+}
+
+void StrategyModule::UpdateBallPositions(Point2D element)
+{
+    /*TODO: Write thread-safe code*/
+    if (balls_positions_.size() >= max_deque_size) {
+        balls_positions_.pop_front();
+    }
+    balls_positions_.push_back(element);
 }
 
 void StrategyModule::SayState(gamecontroller::GameState state)

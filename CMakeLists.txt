@@ -15,8 +15,9 @@ option(MYMODULE_IS_REMOTE
 # Create a list of source files
 set(_srcs
         src/main.cpp
+<<<<<<< HEAD
         src/message.cpp
-        src/strategy.cpp)
+        src/StrategyModule.cpp)
 
 if(MYMODULE_IS_REMOTE)
     # Add a compile flag because code changes a little bit
@@ -36,5 +37,5 @@ endif()
 
 # Tell CMake that mymodule depends on ALCOMMON and ALPROXIES.
 # This will set the libraries to link mymodule with,
-# the include paths, and so on
+# the src paths, and so on
 qi_use_lib(StrategyModule ALCOMMON ALPROXIES BOOST)
