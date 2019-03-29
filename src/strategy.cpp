@@ -9,11 +9,6 @@ using namespace AL;
 
 StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name), tts_(getParentBroker()), fMemoryProxy(getParentBroker()), message_(FROM_STRATEGY_TO_COMMUNICATION, FROM_COMMUNICATION_TO_STRATEGY)
 {
-  functionName("UpdateGameState", getName(), "");
-  BIND_METHOD(StrategyModule::UpdateGameState);
-
-  fMemoryProxy.subscribeToEvent("GameStateChanged", "StrategyModule", "Game State", "UpdateGameState");
-  std::cout << "subsribed successfully" << std::endl;
 }
 
 void StrategyModule::init()
@@ -21,7 +16,7 @@ void StrategyModule::init()
   std::cout << "init\n";
 
   message_.InitMsg();
-  message_.StartReceiveLoop();
+  ReceiveLoop();
 
   //StartMovementTest();
 }
@@ -29,6 +24,18 @@ void StrategyModule::init()
 StrategyModule::~StrategyModule()
 {
 
+}
+
+void StrategyModule::ReceiveLoop()
+{
+  std::cout << "start receive loop\n";
+
+  while(1)
+  {
+    MessageInputBuf buf = message_.ReceiveMessage();
+
+    UpdateGameState((gamecontroller::GameState)buf.data.state);
+  }
 }
 
 void StrategyModule::ExecutingLoop()
@@ -62,10 +69,9 @@ void StrategyModule::StartExecuting()
     }
 }
 
-void StrategyModule::UpdateGameState(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg)
+void StrategyModule::UpdateGameState(gamecontroller::GameState state)
 {
-    int buf = (int) value;
-    currentGameState = (gamecontroller::GameState)buf;
+    currentGameState = state;
 
     if((currentGameState == gamecontroller::GameState::FINISHED) && (is_started_.load() == true))
     {

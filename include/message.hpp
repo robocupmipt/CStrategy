@@ -67,16 +67,13 @@ class Message
 
   ~Message();
 
-  /* There are std::threads here */
   bool InitMsg();
 
   bool SendMessage(MessageOutputBuf &buf);
 
   bool SetMessageTypes(int output, int input);
 
-  bool ReceiveLoop();
-
-  bool StartReceiveLoop();
+  MessageInputBuf& ReceiveMessage();
 
   private:
 
