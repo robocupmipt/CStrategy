@@ -40,7 +40,9 @@ private:
 
     /* Tools for GameController Event */
     AL::ALMemoryProxy fMemoryProxy;
-    void UpdateGameState(const std::string &key, const AL::ALValue &value, const AL::ALValue &msg);
+    void UpdateGameState(gamecontroller::GameState state);
+
+    void ReceiveLoop();
 
     /* Start */
     void StartExecuting();

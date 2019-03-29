@@ -40,35 +40,13 @@ bool Message::InitMsg()
 	}
 }
 
-bool Message::StartReceiveLoop()
-{
-
-  std::thread receive([&](){
-    ReceiveLoop();
-  });
-
-  //https://en.cppreference.com/w/cpp/thread/thread/detach
-  receive.detach();
-
-  std::cout << "detach completed\n";
-
-  return true;
-}
-
-bool Message::ReceiveLoop()
+MessageInputBuf Message::ReceiveMessage()
 {
   MessageInputBuf buf;
-  buf.type = inputType_;
 
-  std::cout << "receive loop is started" << std::endl;
+	int length = msgrcv(msgid_, (struct msg_buf *)&buf, sizeof(InputData), inputType_, 0);
 
-	do
-  {
-	  int length = msgrcv(msgid_, (struct msg_buf *)&buf, sizeof(InputData), inputType_, 0);
-		CHECK("msgrcv", length);
-
-    std::cout << "state " << buf.data.state << std::endl;
-	} while(1);
+  return buf;
 }
 
 bool Message::SetMessageTypes(int outputType, int inputType)
