@@ -9,7 +9,7 @@
 class ComputerVisionAdapter {
 public:
     Point2D GetBallPosition() {
-        return Point2D();
+        return Point2D(0, 0);
     }
 };
 

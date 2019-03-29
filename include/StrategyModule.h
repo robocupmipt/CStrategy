@@ -70,9 +70,9 @@ private:
     std::atomic<gamecontroller::GameState> currentGameState;
 
     AL::ALTextToSpeechProxy tts_;
-    MovementGraphAdapter movement_graph_adapter_;
-    LocalizationModuleAdapter localization_module_adapter_;
-    ComputerVisionAdapter computer_vision_adapter_;
+    MovementGraphAdapter movement_graph_adapter_{};
+    LocalizationModuleAdapter localization_module_adapter_{};
+    ComputerVisionAdapter computer_vision_adapter_{};
 
     std::deque<Point2D> balls_positions_;
     const int max_deque_size = 10;

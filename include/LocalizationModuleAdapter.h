@@ -5,10 +5,10 @@
 #ifndef STRATEGYMODULE_LOCALIZATIONMODULEADAPTER_H
 #define STRATEGYMODULE_LOCALIZATIONMODULEADAPTER_H
 
-class LocalizationModule {
+class LocalizationModuleAdapter {
 public:
     Point2D GetCurrentPosition() {
-        return Point2D();
+        return Point2D(0, 0);
     }
 };
 

@@ -4,10 +4,11 @@
 
 #ifndef STRATEGYMODULE_MOVEMENTGRAPHADAPTER_H
 #define STRATEGYMODULE_MOVEMENTGRAPHADAPTER_H
+#pragma once
 
-class MovementGraphAdapter{
+class MovementGraphAdapter {
 public:
-    virtual void init();
+    MovementGraphAdapter() = default;
 
     // Start forward motion
     void GoForward();
@@ -34,9 +35,13 @@ public:
 
     float GetHeadHorizontalAngle();
 
-    void SetHeadVerticalAngle(float angle);
+    void SetHeadVerticalAngle(float angle) {
+        return;
+    }
 
-    void SetHeadHorizontalAngle(float angle); //in radians
+    void SetHeadHorizontalAngle(float angle) {
+        return;
+    } //in radians
 
     // Tilts the robot's body in order to find the ball
     // level is a number from 0 to 7
