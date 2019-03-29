@@ -72,6 +72,7 @@ void StrategyModule::StartExecuting()
 void StrategyModule::UpdateGameState(gamecontroller::GameState state)
 {
     currentGameState = state;
+    SayState(currentGameState);
 
     if((currentGameState == gamecontroller::GameState::FINISHED) && (is_started_.load() == true))
     {
