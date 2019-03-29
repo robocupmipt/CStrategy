@@ -3,15 +3,6 @@
 
 #define MAX_NUM_PLAYERS             6
 
-enum GameState
-{
-  initial = 0,
-  ready,
-  set,
-  playing,
-  finished
-};
-
 /* rUNSWift Addition: renamed from RobotInfo to PlayerInfo */
 struct PlayerInfo
 {

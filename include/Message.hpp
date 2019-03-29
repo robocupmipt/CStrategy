@@ -10,10 +10,10 @@
 #include<errno.h>
 #include<stdio.h>
 #include<stdlib.h>
-
 #include<iostream>
-#include"data.h"
 #include<string>
+
+#include"Data.h"
 
 #define CHECK(nameFunction, retValue)				\
 do {								\

@@ -1,16 +1,16 @@
 //
-// Created by Nikita Mikhaylov on 2019-03-17.
+// Created by Nikita Mikhaylov and Vladislav Molodtsov on 2019-03-29.
 //
 
 #ifndef CSTRATEGY_STRATEGYMODULE_H
 #define CSTRATEGY_STRATEGYMODULE_H
+
 #include <alcommon/almodule.h>
 #include <alproxies/altexttospeechproxy.h>
 #include <alcommon/albroker.h>
 #include <alproxies/almemoryproxy.h>
 #include <alcommon/alproxy.h>
 #include <alvalue/alvalue.h>
-#include"../include/message.hpp"
 
 #include <memory>
 #include <string>
@@ -18,7 +18,9 @@
 #include <atomic>
 #include <thread>
 #include <chrono>
-#include "GameController.h"
+
+#include "GCStates.h"
+#include "Message.hpp"
 
 using namespace AL;
 
