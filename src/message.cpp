@@ -42,11 +42,15 @@ bool Message::InitMsg()
 
 bool Message::StartReceiveLoop()
 {
-  std::thread receive (&Message::ReceiveLoop, this);
 
-  receive.join();
+  std::thread receive([&](){
+    ReceiveLoop();
+  });
 
-  std::cout << "join success\n";
+  //https://en.cppreference.com/w/cpp/thread/thread/detach
+  receive.detach();
+
+  std::cout << "detach completed\n";
 
   return true;
 }
@@ -60,7 +64,7 @@ bool Message::ReceiveLoop()
 
 	do
   {
-	  int length = msgrcv(msgid_, (struct msg_buf *)&buf, sizeof(InputData), 0, 0);
+	  int length = msgrcv(msgid_, (struct msg_buf *)&buf, sizeof(InputData), inputType_, 0);
 		CHECK("msgrcv", length);
 
     std::cout << "state " << buf.data.state << std::endl;

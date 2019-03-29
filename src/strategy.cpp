@@ -7,7 +7,7 @@
 
 using namespace AL;
 
-StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name), tts_(getParentBroker()), fMemoryProxy(getParentBroker()), message_(FROM_COMMUNICATION_TO_STRATEGY, FROM_STRATEGY_TO_COMMUNICATION)
+StrategyModule::StrategyModule(boost::shared_ptr<ALBroker> broker, const std::string& name): ALModule(broker, name), tts_(getParentBroker()), fMemoryProxy(getParentBroker()), message_(FROM_STRATEGY_TO_COMMUNICATION, FROM_COMMUNICATION_TO_STRATEGY)
 {
   functionName("UpdateGameState", getName(), "");
   BIND_METHOD(StrategyModule::UpdateGameState);
