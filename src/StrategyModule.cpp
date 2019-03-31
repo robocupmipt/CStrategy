@@ -7,7 +7,6 @@
 #include <qi/log.hpp>
 #include <alproxies/altexttospeechproxy.h>
 
-#include"../include/Message.hpp"
 #include "../include/StrategyModule.h"
 
 using namespace AL;
@@ -21,7 +20,12 @@ void StrategyModule::init()
   std::cout << "init\n";
 
   message_.InitMsg();
-  ReceiveLoop();
+
+  std::thread receive([&](){
+    ReceiveLoop();
+  });
+
+  receive.detach();
 
   //StartMovementTest();
 }
@@ -37,7 +41,9 @@ void StrategyModule::ReceiveLoop()
 
   while(1)
   {
-    MessageInputBuf buf = message_.ReceiveMessage();
+    MessageType<Receive> buf = message_.ReceiveMessage();
+
+    std::cout << "state " << buf.data.state << std::endl;
 
     UpdateGameState((gamecontroller::GameState)buf.data.state);
   }
@@ -137,22 +143,22 @@ void StrategyModule::SayState(gamecontroller::GameState state)
 {
     switch(state)
     {
-      case INITIAL:
+      case gamecontroller::INITIAL:
         tts_.say("initial");
         break;
-      case READY:
+      case gamecontroller::READY:
         tts_.say("ready");
         break;
-      case SET:
+      case gamecontroller::SET:
         tts_.say("set");
         break;
-      case PLAYING:
+      case gamecontroller::PLAYING:
         tts_.say("playing");
         break;
-      case FINISHED:
+      case gamecontroller::FINISHED:
         tts_.say("finished");
         break;
-      case PENALIZED:
+      case gamecontroller::PENALIZED:
         tts_.say("penalized");
         break;
     }

@@ -22,9 +22,15 @@
 #include "MovementGraphAdapter.h"
 #include "LocalizationModuleAdapter.h"
 #include "GCStates.h"
-#include "Message.hpp"
+
+#define FILE_KEY "../key"
+
+#include"Channels.h"
+#include"Custom.h"
+#include "Message.h"
 
 using namespace AL;
+using namespace message;
 
 namespace AL
 {
@@ -68,7 +74,7 @@ private:
     std::atomic<bool> is_terminated_{false};
     std::atomic<bool> is_started_{false};
     std::atomic<gamecontroller::GameState> currentGameState;
-    Message message_;
+    Message<MessageType<Send>, MessageType<Receive>> message_;
 
     AL::ALTextToSpeechProxy tts_;
     MovementGraphAdapter movement_graph_adapter_{};
