@@ -43,6 +43,8 @@ void StrategyModule::ReceiveLoop()
   {
     MessageType<Receive> buf = message_.ReceiveMessage();
 
+    std::cout << "state " << buf.data.state << std::endl;
+
     UpdateGameState((gamecontroller::GameState)buf.data.state);
   }
 }

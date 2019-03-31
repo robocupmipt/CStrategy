@@ -13,6 +13,9 @@
  *
  */
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include<sys/msg.h>
 #include<errno.h>
 #include<stdio.h>
@@ -72,6 +75,7 @@ template<typename SendTemplate, typename ReceiveTemplate>
 Message<SendTemplate, ReceiveTemplate>::Message(int sendType, int receiveType)
 {
   SetMessageTypes(sendType, receiveType);
+
 }
 template<typename SendTemplate, typename ReceiveTemplate>
 bool Message<SendTemplate, ReceiveTemplate>::SetMessageTypes(int sendType, int receiveType)
@@ -85,6 +89,7 @@ bool Message<SendTemplate, ReceiveTemplate>::InitMsg()
 {
 	key_t key = ftok(FILE_KEY, 0);
   MESSAGE_CHECK("ftok", key);
+
   std::cout << "key " << key << std::endl;
 
 	msgid_ = msgget(key, PERMISSION | IPC_CREAT | IPC_EXCL);
@@ -98,6 +103,7 @@ bool Message<SendTemplate, ReceiveTemplate>::InitMsg()
 		else
 		{
 			perror("msgget");
+
 			return false;
 		}
 	}
@@ -132,7 +138,10 @@ ReceiveTemplate Message<SendTemplate, ReceiveTemplate>::ReceiveMessage()
     std::cout << "Correct length = " << sizeof(ReceiveTemplate) << std::endl;
   }
   else
+  {
       std::cout << "msgrcv succeed" << std::endl;
+      
+  }
 
   std::cout << "type " << buf.type << std::endl;
 
