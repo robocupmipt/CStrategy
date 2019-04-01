@@ -26,6 +26,7 @@ namespace message
 {
 
 #define PERMISSION 0777
+#define KEY_NUMBER 70000
 
 #define MESSAGE_CHECK(nameFunction, retValue)				\
 do {								\
@@ -87,10 +88,7 @@ bool Message<SendTemplate, ReceiveTemplate>::SetMessageTypes(int sendType, int r
 template<typename SendTemplate, typename ReceiveTemplate>
 bool Message<SendTemplate, ReceiveTemplate>::InitMsg()
 {
-	key_t key = ftok(FILE_KEY, 0);
-  MESSAGE_CHECK("ftok", key);
-
-  std::cout << "key " << key << std::endl;
+	key_t key = KEY_NUMBER;
 
 	msgid_ = msgget(key, PERMISSION | IPC_CREAT | IPC_EXCL);
 	if(msgid_ < 0)
