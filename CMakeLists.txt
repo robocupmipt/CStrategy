@@ -10,7 +10,7 @@ find_package(qibuild)
 # as a remote executable, or as a local shared library
 option(MYMODULE_IS_REMOTE
         "module is compiled as a remote module (ON or OFF)"
-        ON)
+        OFF)
 
 # Create a list of source files
 set(_srcs
